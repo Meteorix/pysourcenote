@@ -12,7 +12,7 @@ Python源码学习笔记
     
 
 ## Python总体架构
-![image](./arch.png)
+![image](./img/arch.png)
 
 
 ### Python源码结构
@@ -46,7 +46,7 @@ attach断不下来，不知道为何，直接用lldb可以attach。
 
 如下图，可以看出一个简单的 1+2 c栈真tm深啊
 
-![image](./1plus2.png)
+![image](./img/1plus2.png)
 
 vscode配置如下：
 ```
@@ -105,13 +105,13 @@ typedef struct {
 ```
 
 *   PyVarObject（变长对象）= PyObject + ob_size（长度），更多可参考object.h
-![image](./varobj.png)
+![image](./img/varobj.png)
 
 
 
 ### PyTypeObject
 
-![image](./typeobj.png)
+![image](./img/typeobj.png)
 
 int(10)  -is instance of-> int -is subclass of-> object -is instance of-> type
 
@@ -181,7 +181,7 @@ Python中大量采用内存对象池（不同于内存池）技术，避免频�
 >>> a = 3333
 >>> a = 4444
 ```
-![image](./dealloc.png)
+![image](./img/dealloc.png)
 ```
 static void
 int_dealloc(PyIntObject *v)
@@ -205,10 +205,10 @@ int_dealloc(PyIntObject *v)
 #### block_list
 那么intobject的内存池到底是怎样组织的呢？答案就是block_list，其实很多对象内存池都是这样。
 初始化intobject的时候，如果没有free_list，就申请一个新的block，加入block_list链表。
-![image](./blocklist.png)
+![image](./img/blocklist.png)
 
 初始化block_list调用fill_free_list，将空位用ob_type指针一个个链起来，然后用free_list指向链表头，然后用这个free_list链表在创建和删除intobject时来维护空位。
-![image](./blocklist2.png)
+![image](./img/blocklist2.png)
 
 如上图，要注意的是free_list是可以跨block的。
 
@@ -280,7 +280,7 @@ False
 ### 断点看看
 
 在int_print里面打个断点，用watch看看free_list和block_list的分布吧
-![image](./inthack.png)
+![image](./img/inthack.png)
 
 
 到这里，最简单的int对象就讲完了，顺带有一些内存管理通用的分析，下面看看略复杂一点的string对象
@@ -304,7 +304,7 @@ typedef struct {
      */
 } PyStringObject;
 ```
-![image](./strobj.png)
+![image](./img/strobj.png)
 
 首先是一个VAR_HEAD，多一个ob_size表示长度
 注释写的很清楚：
@@ -348,7 +348,7 @@ PyString_InternFromString(const char *cp)
 这里是保存了一个interned的字典（对，就是python中的dict对象）。
 如果发现在interned中，就把新对象指向原来的对象，立即销毁新对象，这也就是inplace。
 
-![image](./intern.png)
+![image](./img/intern.png)
 
 
 ### character缓存池
@@ -379,7 +379,7 @@ PyString_FromString(const char *str)
     return (PyObject *) op;
 }
 ```
-![image](./charpool.png)
+![image](./img/charpool.png)
 
 下次取单字符就直接从characters里面取了
 ```
@@ -416,7 +416,7 @@ typedef struct {
 >>> l = [None] * 100
 >>> l[3] = 100
 ```
-![image](./listobj.png)
+![image](./img/listobj.png)
 
 ```
 static int
@@ -481,12 +481,12 @@ resize策略：
 1. 当 (allocated / 2 ) <= newsize <= allocated ，内存不变
 2. 否则按newsize的比例，冗余一定的内存
 
-![image](./listins.png)
+![image](./img/listins.png)
 
 append和remove时流程类似
 
 删除的时候也会调用list_resize重新计算内存，调用memmove搬移内存
-![image](./listrm.png)
+![image](./img/listrm.png)
 
 
 
@@ -568,7 +568,7 @@ ma_fill和ma_used是两个size，看注释
 Active是占用了的entry，Dummy是hash表删除后留下的空槽，用于冲突检测链
 
 
-![image](./dummy.png)
+![image](./img/dummy.png)
 
 dummy 在初始化第一个PyDictObject的时候初始化，就是一个str
 ```
@@ -728,7 +728,7 @@ dict_dealloc(register PyDictObject *mp)
 >>> a = {"key":"value"}
 ```
 
-![image](./tablebreak.png)
+![image](./img/tablebreak.png)
 
 最简单的table，ma_table指向ma_smalltable
 另外可以发现，一行代码，这个函数断了十来次。。。都是虚拟机运行过程中跑到的，真的是重度依赖。
