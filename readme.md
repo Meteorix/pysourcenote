@@ -37,11 +37,13 @@ Python源码学习笔记
 ./configure
 make
 ```
+编译出来的是在主目录下的`./python.exe`，不用怀疑，是一个在mac下可以启动的二进制
 
+【补图，启动python显示编译时间】
 
-在用vscode+lldb调试启动编译出来的`./python.exe`
-attach断不下来，不知道为何，直接用lldb可以attach。
-为了方便看源码，所以用vscode+lldb调试启动，
+在用vscode+lldb调试模式attach到编译出来的
+python.exe进程，断不下来断点。不知道为何，直接用lldb可以attach。
+为了方便看源码，所以采用vscode+lldb调试启动，
 然后可以通过断点的方式很方便地查看调用栈，配合《源码剖析》看非常有帮助。
 
 如下图，可以看出一个简单的 1+2 c栈真tm深啊
