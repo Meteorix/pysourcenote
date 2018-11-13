@@ -44,13 +44,13 @@ Python源码学习笔记
 
 ### 编译python
 参考源码/Mac/README，用gcc编译python
-```
+```bash
 ./configure
 make
 ```
 编译出来的是在主目录下的`./python.exe`，不用怀疑，是一个在mac下可以启动的二进制
 
-```
+```bash
 ➜  cpython git:(2.7) ✗ ./python.exe 
 Python 2.7.15+ (heads/2.7:64ffee7, Oct 30 2018, 18:02:37) 
 [GCC 4.2.1 Compatible Apple LLVM 10.0.0 (clang-1000.11.45.2)] on darwin
@@ -62,17 +62,30 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ### vscode调试
 
-在用vscode+lldb调试模式attach到编译出来的
-python.exe进程，断不下来断点。不知道为何，直接用lldb可以attach。
-为了方便看源码，所以采用vscode+lldb调试启动，
-然后可以通过断点的方式很方便地查看调用栈，配合《源码剖析》看非常有帮助。
+有两种方式通过lldb来调试python: `attatch`和`launch`
 
-如下图，可以看出一个简单的 1+2 c栈真tm深啊
+#### 准备工作
+1. vscode安装cpp插件：[vscode-cpptools](https://github.com/Microsoft/vscode-cpptools)
+2. 在vscode里打开python源码，新建Debug配置，可能需要新建.vscode目录保存配置文件。如图：
 
-![image](./img/1plus2.png)
+![image](./img/debug_config.png)
 
-vscode配置如下：
+#### lldb attach 配置
+运行编译的python.exe，launch.json配置文件如下，proceeId修改为python.exe的pid：
+```json
+        {
+            "type": "cppdbg",
+            "name": "(lldb) attach",
+            "program": "${workspaceFolder}/python.exe",
+            "request": "attach",
+            "processId": "3917",
+            "MIMode": "lldb"
+        },
 ```
+
+#### lldb launch 配置
+选择launch方式启动，vscode会启动terminal运行python.exe
+```json
     "configurations": [
         {
             "name": "(lldb) Launch",
@@ -88,3 +101,9 @@ vscode配置如下：
         }
     ]
 ```
+
+然后可以通过断点的方式很方便地查看调用栈，配合《源码剖析》看非常有帮助。
+
+如下图，可以看出一个简单的 1+2 c栈真tm深啊
+
+![image](./img/1plus2.png)
