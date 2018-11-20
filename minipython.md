@@ -3,6 +3,11 @@ MiniPython
 
 自己实现的最小版本python，目前主要用于尝试对象系统。为了简单，基于map实现了PyDictObject，所以用了c++。不过尽量接近cpython的实现，可以一看。后面可能还会扩展，增加gc和更复杂的语法解析。
 
+
+### Code
+
+[minipython](./minipython)
+
 ### Build
 ```
 cd minipython
