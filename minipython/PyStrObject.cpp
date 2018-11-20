@@ -17,13 +17,18 @@ PyObject* PyStr_Create(const char* value)
     object->type = &PyString_Type;
     object->length = (value == NULL) ? 0 : strlen(value);
     object->hashValue = -1;
+    memset(object->value, 0, 50);
+    if (value != NULL)
+    {
+        strcpy(object->value, value);
+    }
+    return (PyObject*)object;
 }
 
 
 static void str_print(PyObject* object)
 {
     printf("%s\n", ((PyStringObject*)object)->value);
-
 }
 
 
@@ -57,7 +62,7 @@ static long str_hash(PyObject* object)
     unsigned char* p;
     long x;
 
-    if(strObject->hashValue != 1)
+    if(strObject->hashValue != -1)
     {
         return strObject->hashValue;
     }

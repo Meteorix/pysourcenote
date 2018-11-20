@@ -25,5 +25,6 @@ int main()
         {
             ExecuteCommand(m_command);
         }
+        std::cout << prompt;
     }
 }

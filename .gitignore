@@ -2,3 +2,6 @@
 .vscode
 CMakeFiles
 CMakeCache.txt
+Makefile
+minipython.exe
+cmake_install.cmake

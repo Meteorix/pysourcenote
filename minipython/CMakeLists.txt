@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 2.6)
-project (mydb)
+project (minipython)
 
 set(
 	MODULES
@@ -16,7 +16,7 @@ foreach(MODULE ${MODULES})
 endforeach()
 
 add_executable(
-    a.out
+    minipython.exe
 	python.cpp
 	${SOURCES}
 )
