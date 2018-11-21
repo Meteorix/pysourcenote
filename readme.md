@@ -20,6 +20,7 @@ Python源码学习笔记
 - [PyObject对象系统](./object.md)
 - [GC垃圾回收机制](./gc.md)
 - [最小实现minipython](./minipython.md)
+- [Python虚拟机](./vm.md)
 
 
 ### Python总体架构
