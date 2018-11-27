@@ -2,6 +2,32 @@ Python对象系统
 =============
 在python中`all is object`，所以PyObject是整个python对象系统的基石，来看看PyObject的实现，从最简单的PyIntObject开始。
 
+## Table of Contents
+
+* [PyIntObject](#pyintobject)
+    * [PyObject](#pyobject)
+    * [PyInt\_Type](#pyint_type)
+    * [PyTypeObject](#pytypeobject)
+    * [多态的实现](#%E5%A4%9A%E6%80%81%E7%9A%84%E5%AE%9E%E7%8E%B0)
+    * [引用计数](#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0)
+      * [free\_list](#free_list)
+      * [block\_list](#block_list)
+    * [小整数对象](#%E5%B0%8F%E6%95%B4%E6%95%B0%E5%AF%B9%E8%B1%A1)
+    * [断点看看](#%E6%96%AD%E7%82%B9%E7%9C%8B%E7%9C%8B)
+* [PyStringObject](#pystringobject)
+    * [不可变对象](#%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1)
+    * [Intern机制](#intern%E6%9C%BA%E5%88%B6)
+    * [character缓存池](#character%E7%BC%93%E5%AD%98%E6%B1%A0)
+* [PyListObject](#pylistobject)
+    * [insert](#insert)
+    * [resize](#resize)
+    * [缓存池](#%E7%BC%93%E5%AD%98%E6%B1%A0)
+* [PyDictObject](#pydictobject)
+    * [lookdict](#lookdict)
+    * [resize](#resize-1)
+    * [缓存池](#%E7%BC%93%E5%AD%98%E6%B1%A0-1)
+    * [断点看看](#%E6%96%AD%E7%82%B9%E7%9C%8B%E7%9C%8B-1)
+
 ## PyIntObject
 
 ```

@@ -13,14 +13,24 @@ Python源码学习笔记
 1. 其他
     - 垃圾回收、GIL、import
 
-
-
-### Index
+记录此学习笔记，分章节不定期更新，欢迎提PR和Issue : )
 
 - [PyObject对象系统](./object.md)
 - [GC垃圾回收机制](./gc.md)
 - [最小实现minipython](./minipython.md)
 - [Python虚拟机](./vm.md)
+
+
+### Table of Contents
+
+* [Python总体架构](#python%E6%80%BB%E4%BD%93%E6%9E%B6%E6%9E%84)
+* [Python源码结构](#python%E6%BA%90%E7%A0%81%E7%BB%93%E6%9E%84)
+* [学习环境](#%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83)
+* [编译python](#%E7%BC%96%E8%AF%91python)
+* [vscode调试](#vscode%E8%B0%83%E8%AF%95)
+    * [准备工作](#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C)
+    * [lldb attach 配置](#lldb-attach-%E9%85%8D%E7%BD%AE)
+    * [lldb launch 配置](#lldb-launch-%E9%85%8D%E7%BD%AE)
 
 
 ### Python总体架构

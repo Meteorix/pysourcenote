@@ -3,6 +3,20 @@ Python虚拟机
 
 > 刘欣 2018.11.21
 
+## Table of Contents
+
+* [编译](#%E7%BC%96%E8%AF%91)
+    * [pyc](#pyc)
+    * [PyCodeObject](#pycodeobject)
+    * [解析pyc](#%E8%A7%A3%E6%9E%90pyc)
+* [执行环境](#%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83)
+    * [PyFrameObject](#pyframeobject)
+* [命名空间](#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4)
+    * [LGB规则](#lgb%E8%A7%84%E5%88%99)
+    * [闭包](#%E9%97%AD%E5%8C%85)
+    * [global语句](#global%E8%AF%AD%E5%8F%A5)
+* [PyEval\_EvalFrameEx](#pyeval_evalframeex)
+* [运行时框架](#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%A1%86%E6%9E%B6)
 
 ## 编译
 
@@ -226,7 +240,7 @@ UnboundLocalError: local variable 'a' referenced before assignment
 理解了这一点，global的真正意义就理解了：**表明在当前block中变量是global作用域的**
 
 
-### PyEval_EvalFrameEx
+## PyEval_EvalFrameEx
 
 虚拟机执行的一个重要函数，
 
@@ -257,7 +271,7 @@ enum why_code {
 };
 ```
 
-### 运行时框架
+## 运行时框架
 
 
 os的进程和线程模型，这里假设大家都知道。python对os的源生进程和线程分别进行了封装，原理其实差不多。那么整体架构如下
