@@ -3,17 +3,7 @@ Python源码学习笔记
 
 > 刘欣 2018.10.30
 
-
-最近在学习Python源码，参考《Python源码剖析》这本书，主要内容有：
-
-1. 对象系统
-    - PyObject、int、str、list、dict
-1. 虚拟机
-    - interpreter->thread->frame->code->namespace->closure...
-1. 其他
-    - 垃圾回收、GIL、import
-
-记录此学习笔记，分章节不定期更新，欢迎提PR和Issue : )
+最近在学习Python源码，参考《Python源码剖析》这本书。记录此学习笔记，分章节不定期更新，欢迎提PR和Issue : )
 
 - [PyObject对象系统](./object.md)
 - [GC垃圾回收机制](./gc.md)
