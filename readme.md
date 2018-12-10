@@ -63,7 +63,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ### vscode调试
 
-有两种方式通过lldb来调试python: `attatch`和`launch`
+有两种方式通过lldb来调试python: `attach`和`launch`
 
 #### 准备工作
 1. vscode安装cpp插件：[vscode-cpptools](https://github.com/Microsoft/vscode-cpptools)
