@@ -30,11 +30,11 @@ Python源码学习笔记
 ### Python源码结构
 
 - Include  	Python提供的所有头文件（著名的Python.h)
-- Lib		Python自带的标准库，python写的
-- Modules    	标准库，c写的
-- Parser		语法分析部分
-- Objects 	所有的内建对象c实现
-- Python		Compiler和Runtime引擎部分，运行核心所在
+	 Lib		Python自带的标准库，python写的
+	 Modules    	标准库，c写的
+	 Parser		语法分析部分
+	 Objects 	所有的内建对象c实现
+	 Python		Compiler和Runtime引擎部分，运行核心所在
 - Mac/PCBuild...  平台编译部分
 
 
@@ -63,7 +63,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ### vscode调试
 
-有两种方式通过lldb来调试python: `attatch`和`launch`
+有两种方式通过lldb来调试python: `attach`和`launch`
 
 #### 准备工作
 1. vscode安装cpp插件：[vscode-cpptools](https://github.com/Microsoft/vscode-cpptools)
