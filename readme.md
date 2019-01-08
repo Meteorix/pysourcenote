@@ -39,7 +39,7 @@ Python源码学习笔记
 
 
 ### 学习环境
-*   采用python2.7最新github代码
+*   采用python2.7最新github [cpython代码](https://github.com/python/cpython/tree/2.7)
 *   macbook 开发环境 gcc编译
 *   vscode + lldb做debugger
 
