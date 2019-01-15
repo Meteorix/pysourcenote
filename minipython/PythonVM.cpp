@@ -9,17 +9,22 @@ PyObject* GetObjectBySymbol(const string& symbol);
 PyDictObject* m_LocalEnvironment = (PyDictObject*)PyDict_Create();
 
 
+
 void ExecuteCommand(string& command)
 {
     string::size_type pos = 0;    
     if ((pos = command.find("print ")) != string::npos)
-    {
-        ExecutePrint(command.substr(6));
+    {   
+        string target = command.substr(6);
+        trim(target);
+        ExecutePrint(target);
     }
-    else if ((pos = command.find(" = ")) != string::npos)
+    else if ((pos = command.find("=")) != string::npos)
     {
         string target = command.substr(0, pos);
-        string source = command.substr(pos + 3);
+        string source = command.substr(pos + 1);
+        trim(target);
+        trim(source);
         ExecuteAdd(target, source);
     }
     else if ((pos = command.find("__local__")) != string::npos)
@@ -27,8 +32,10 @@ void ExecuteCommand(string& command)
         m_LocalEnvironment->type->print((PyObject*)m_LocalEnvironment);
     }
     else
-    {
-        printf("Unknown syntax\n");
+    {   
+        string target = command;
+        rtrim(target);
+        ExecutePrint(target);
     }
 }
 
