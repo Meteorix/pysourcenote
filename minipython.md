@@ -22,12 +22,12 @@ make
 ***minipython***
 >>> a = 1
 >>> b = 2
->>> c = a+b
+>>> c = a + b
 >>> print c
 3
 >>> x = "hello"
 >>> y = "world"
->>> z = x+y
+>>> z = x + y
 >>> print z
 helloworld
 >>> __local__
